@@ -208,3 +208,13 @@ Middleware nằm giữa request và logic nghiệp vụ. Nó được dùng đ�
 - **Chuyển tiếp cho middleware phía sau:** thực hiện bằng cách gọi hàm next().
 - **Xử lý logic của middleware**.
 - **Xử lý phản hồi:** Phản hồi về client nếu lỗi.
+## l. Authentication(Xác thực) và Authorization(Phân quyền)
+- **Authentication:**
+  - **Quá trình:** Xác thực thường bắt đầu khi cung cấp tên người dùng và mật khẩu.
+  - **Xác thực:** Thông tin đăng nhập được gửi từ client đến server. Server sẽ kiểm tra thông tin này bằng cách so sánh với dữ liệu trong database.
+  - **Kết quả:** Nếu thông tin đăng nhập hợp lệ, thì sẽ cấp cho một mã JWT.
+- **Authorization:**
+  - **Quá trình:** Sau khi xác thực xong thì người dùng yêu cầu truy cập vào tài nguyên nào đó.
+  - **Xác thực:** Server sẽ kiểm tra xem người dùng đó có quyền truy cập vào không dựa trên quyền hạn được gắn cho họ.
+  - **Kết quả:** Nếu người dùng có quyền thì sẽ được cung cấp tài nguyên đó và ngược lại sẽ trả lại lỗi phù hợp.
+
