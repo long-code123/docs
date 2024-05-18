@@ -217,4 +217,19 @@ Middleware nằm giữa request và logic nghiệp vụ. Nó được dùng đ�
   - **Quá trình:** Sau khi xác thực xong thì người dùng yêu cầu truy cập vào tài nguyên nào đó.
   - **Xác thực:** Server sẽ kiểm tra xem người dùng đó có quyền truy cập vào không dựa trên quyền hạn được gắn cho họ.
   - **Kết quả:** Nếu người dùng có quyền thì sẽ được cung cấp tài nguyên đó và ngược lại sẽ trả lại lỗi phù hợp.
-
+# 7. Redis:
+![alt text](image-17.png)
+- Người dùng sẽ gửi **request** tới cache:
+  - Nếu có data trong cache thì sẽ trả lại người dùng ngay.
+  - Nếu không có data trong cache thì sẽ tới db để lấy data rồi trả về cho người dùng và set cache.
+# 8. SSR và CSR:
+- **Server side** và **client side**:
+  - **Server side** là phía ứng dụng của web mà mã được thực thi và xử lý trên **máy chủ**.
+  - **Client side** là phía ứng dụng của web mà mã được thực thi và xử lý trên **trình duyệt của người dùng**.
+- **Server side rendering** và **client side rendering**
+  - **SSR**:
+    - Là quá trình mà trang web được tạo ra mà render trên máy chủ trước khi được gửi đến trình duyệt của người dùng.
+    - Hoạt động: Mỗi khi có yêu cầu từ client, máy chủ sẽ tạo ra trang HTML hoàn chỉnh và gửi nó cho client sau đó sẽ được hiển thị ngay khi tải lại trang.
+  - **CSR**:
+    - Là quá trình mà trang web được tạo ra và render trên trình duyệt của người dùng bằng Javascript sau khi khác tệp tĩnh đã được tải về.
+    - Hoạt động: Trang web trả về một cấu trúc HTML cơ bản và Javascript tải dữ liệu và render giao diện người dùng dựa trên dữ liệu đó.
