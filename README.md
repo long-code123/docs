@@ -233,3 +233,12 @@ Middleware nằm giữa request và logic nghiệp vụ. Nó được dùng đ�
   - **CSR**:
     - Là quá trình mà trang web được tạo ra và render trên trình duyệt của người dùng bằng Javascript sau khi khác tệp tĩnh đã được tải về.
     - Hoạt động: Trang web trả về một cấu trúc HTML cơ bản và Javascript tải dữ liệu và render giao diện người dùng dựa trên dữ liệu đó.
+# 9. Hooks:
+- **useState** và **useEffect**:
+  - **useState** là hàm để cập nhật dữ liệu
+  ```javascript
+  const [state, setState] = useState(initState)
+  ```
+  Với đối số là **initState** truyền vào giá trị **ban đầu**, **state** sẽ nhận **initState** là giá trị, sau đó sẽ thay đổi giá trị của **state** bằng **setState** và sau khi **setSate** sẽ re-render lại component. 
+   - **useEffect** là hàm để cập nhật dữ liệu
+# 10. RBAC: 
