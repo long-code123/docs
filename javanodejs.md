@@ -230,7 +230,235 @@ Kết quả sẽ là:
 0 8 16 24 32 40 48 56 64 
 0 9 18 27 36 45 54 63 72 
 ```
-## 6. Các tính chất của Java OOPs:
+## 6. Compile và Runtime Time:
+### a. Compile Time:
+- Là giai đoạn chuyển source code java về bytecode từ .java về .class.
+- Trong giai đoạn này, trình biên dịch kiểm tra cú pháp và cấu trúc của mã nguồn, đồng thời kiểm tra các lỗi cú pháp và lỗi logic cơ bản.
+- Nếu có bất kỳ lỗi nào được phát hiện trong quá trình biên dịch, trình biên dịch sẽ thông báo lỗi và dừng quá trình biên dịch.
+### b. Runtime Time:
+- Là giai đoạn chạy chương trình từ bytecode .class sau khi đã compile trên môi trường máy ảo JVM.
+Trong quá trình thực thi, nếu có lỗi xảy ra như chia cho 0, truy cập vào phần tử mảng không hợp lệ, hoặc bất kỳ lỗi nào không thể được phát hiện trong quá trình biên dịch, thì JVM sẽ thông báo lỗi runtime và chương trình sẽ dừng hoạt động.
+![alt text](image-21.png)
 ## 7. Các khái niệm của Java OOPs:
+### a. Class:
+Một lớp là một khuôn mẫu (template) hoặc bản thiết kế (blueprint) cho các đối tượng (object). Nó định nghĩa các thuộc tính (attributes) và phương thức (methods) mà các đối tượng của lớp đó sẽ có.
+```java
+public class Car {
+    // Thuộc tính
+    private String color;
+    private String model;
 
+    // Constructor
+    public Car(String color, String model) {
+        this.color = color;
+        this.model = model;
+    }
+
+    // Phương thức
+    public void display() {
+        System.out.println("Car model: " + model + ", Color: " + color);
+    }
+}
+
+```
+### b. Object:
+Một đối tượng là một thể hiện (instance) cụ thể của một lớp. Nó được tạo ra từ lớp và có các giá trị cụ thể cho các thuộc tính của lớp.
+```java
+        // Tạo đối tượng từ lớp Car
+        Car myCar = new Car("Red", "Toyota");
+
+        // Gọi phương thức trên đối tượng
+        myCar.display();
+```
+### c. Constructor và Method:
+**Method** là một hàm được định nghĩa bên trong một lớp và hoạt động trên các đối tượng của lớp đó.
+**Constructor** trong java là một dạng đặc biệt của phương thức được sử dụng để khởi tạo các đối tượng.
+**Constructor** được gọi tại thời điểm tạo đối tượng. Nó khởi tạo các giá trị để cung cấp dữ liệu cho các đối tượng, đó là lý do tại sao nó được gọi là constructor.
+Khai báo của **Constructor** giống với khải báo của **method** (phương thức). Nó phải có cùng tên với class (lớp) và không có giá trị trả về.
+
+Có 2 kiểu của **constructor**:
+
+Constructor mặc định (không có tham số truyền vào – default constructors).
+Constructor tham số (parameterized constructors).
+Ví dụ:
+```java
+    // Default constructor
+    public Car() {
+    }
+    // Parameterized constructor
+    public Car(String color, String model) {
+        this.color = color;
+        this.model = model;
+    }
+```
+### d. Phạm vi truy cập:
+Access Modifier|Bên trong class|Bên trong Package|Bên ngoài package bởi class con|Bên ngoài class và không thuộc class con
+----------|----------|-----------|-----------|---------
+private|Y|N|N|N
+Default|Y|Y|N|N
+protected|Y|Y|Y|N
+public|Y|Y|Y|Y
+
+## 8. Các tính chất của Java OOPs:
+### a. Tính đóng gói (Encapsulation)
+Nhờ Access Modifier mà có thể bảo vệ được các thuộc tính, phương thức ở trong class đó.
+Ví dụ:
+```java
+public class Car {
+    // Thuộc tính
+    private String color;
+    private String model;
+}
+```
+Đây là trong class Car và thuộc tính color và model được khai báo là private nên chỉ có thể được dùng ở trong lớp này.
+### b. Tính kế thừa (Inheritance)
+Một class sẽ được kế thừa tất cả thuộc tính, phương thức của class kế thừa.
+Ví dụ:
+```java
+public class Driver{
+    private String comment;
+    
+    public void display(){
+        System.out.print("abc");
+    }
+}
+```
+Và class Car sẽ kế thừa class Driver như sau:
+```java
+public class Car extends Driver {
+    // Thuộc tính
+    private String color;
+    private String model;
+}
+```
+
+### c. Tính đa hình (Polymorphism)
+Đa hình là khả năng của một đối tượng để biểu diễn dưới nhiều hình thái khác nhau.
+Tính đa hình có thể đạt được bằng 2 cách là:
+- Nạp chồng phương thức(method overloading)
+```java
+public class Calculator {
+    // Phương thức nạp chồng với 2 tham số kiểu int
+    public int add(int a, int b) {
+        return a + b;
+    }
+
+    // Phương thức nạp chồng với 3 tham số kiểu int
+    public int add(int a, int b, int c) {
+        return a + b + c;
+    }
+
+    // Phương thức nạp chồng với 2 tham số kiểu double
+    public double add(double a, double b) {
+        return a + b;
+    }
+}
+```
+như vậy phương thức **add** có thể thực hiện bởi số nguyên và số thực mà không cần tạo ra nhiều tên gọi khác cho phương thức add như addInt, addDouble
+- Ghi đè phương thức(method overriding)
+```java
+public class Animal {
+    public void makeSound() {
+        System.out.println("Animal makes a sound");
+    }
+}
+
+public class Dog extends Animal {
+    // Ghi đè phương thức makeSound trong lớp cha Animal
+    @Override
+    public void makeSound() {
+        System.out.println("Dog barks");
+    }
+}
+```
+Khi class Dog kế thừa class Animal thì sẽ sở hữu phương thức **makeSound** và khi dùng thì sẽ in ra "Animal makes a sound" nhưng có thể ghi đè bằng cách khai báo lại phương thức **makeSound** ở trong class Dog và hiển thị ra "Dog barks"
+### d. Tính trừu tượng (Abstraction)
+Trừu tượng (Abstraction) là quá trình tạo ra một mô hình giản lược của một đối tượng trong thế giới thực.
+Trừu tượng giúp ẩn đi chi tiết bên trong của một đối tượng và chỉ hiển thị các thông tin cần thiết cho việc sử dụng bên ngoài.
+Ví dụ:
+Khai báo class Animal:
+```java
+public interface Animal{
+    void makeSound();
+}
+```
+Các class nào muốn kế thừa interface Animal thì phải thực hiện các phương thức bên trong Animal
+```java
+public class Dog implements Animal {
+    System.out.println("Dog barks");
+}
+```
+## 9. Cấu trúc dữ liệu và thuật toán:
+### a. Cấu trúc dữ liệu:
+**Array** và **Linked List**
+- Array khi khai báo phải cố định số lượng phần tử vì vậy khi khai báo một array gồm 5 phần tử thì việc thêm phần tử thứ 6 thì phải tạo một array khác gồm 6 phần tử và copy 5 phần tử có sẵn, tương tự như việc xóa một phần tử ở giữa mảng thì phải dịch các phần tử phía sau lại trước => độ phức tạp O(n).
+- Linked List gồm những node có đường dẫn liên kết với nhau giúp việc thêm phần tử và xóa phần tử trở nên đơn giản hơn với độ phức tạp O(1). Tuy nhiên việc tìm kiếm phần tử trở nên khó khăn hơn vì không có index cụ thể cho từng phần tử => độ phức tạp O(n).
+**Stack** và **Queue**
+- Stack thực hiện Last In First Out, những phần tử vào trước sẽ ra cuối cùng.
+![alt text](image-18.png)
+- Queue thực hiện First In First Out, những phần tử vào trước sẽ ra đầu tiên.
+![alt text](image-19.png)
+
+**Graph** và **Tree**
+- Graph là cấu trúc dữ liệu biểu diễn mối quan hệ giữa các đối tượng dưới dạng đỉnh và cạnh.
+- Tree là cấu trúc dữ liệu phân cấp, mỗi phần tử gọi là nút (node) và có một hoặc nhiều nút con.
+![alt text](image-20.png)
+### b. Thuật toán:
+- Sắp xếp(Sort):
+```java
+public class BubbleSort {
+    public static void bubbleSort(int[] arr) {
+        int n = arr.length;
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+                if (arr[j] > arr[j + 1]) {
+                    // Swap arr[j] and arr[j+1]
+                    int temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                }
+            }
+        }
+    }
+}
+```
+- Tìm kiếm nhị phân(Binary Search):
+Khi tìm kiếm sẽ chia đôi mảng thành A và B để xem phần tử ở bên A hay B. Nếu ở bên A thì sẽ tiếp tục chia đôi A để tìm kiếm tương tự cho đến khi tìm được.
+```java
+public class BinarySearch {
+    public static int binarySearch(int[] arr, int key) {
+        int left = 0, right = arr.length - 1;
+        while (left <= right) {
+            int mid = (right + left) / 2;
+            if (arr[mid] == key) {
+                return mid;
+            }
+            if (arr[mid] < key) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+        return -1;
+    }
+}
+```
+## 10. Transmission Control Protocol(TCP) và User Datagram Protocol (UDP):
+### a. TCP:
+TCP giúp việc truyền tải dữ liệu trở nên bảo toàn hơn.
+![alt text](image-22.png)
+TCP là một giao thức kết nối hướng dòng (connection-oriented), điều này có nghĩa là trước khi truyền dữ liệu, hai bên cần thiết lập một kết nối.
+Bằng cách thực hiện **3-way handshake**:
+- B1: Máy chủ gửi một gói tin chứa cờ SYN (Synchronize) đến máy khách.
+- B2: Sau khi nhận được gói tin SYN từ máy chủ, máy khách phản hồi bằng một gói tin chứa cờ SYN và ACK.
+- B3: Sau khi nhận được gói tin SYN-ACK từ máy khách thì sẽ gửi lại thông báo xác nhận ACK cho máy khách và quá trình kết nối được thiết lập.
+![alt text](image-23.png)
+**Ví dụ:**
+TCP thích hợp cho các ứng dụng đòi hỏi tính tin cậy cao và việc truyền dữ liệu theo trình tự nhất định, chẳng hạn như truyền tệp tin, truyền email, truyền trang web, v.v.
+### b. UDP:
+- UDP là một giao thức không kết nối (connectionless), không yêu cầu thiết lập kết nối trước khi truyền dữ liệu.
+Dữ liệu qua UDP nhanh chóng và hiệu quả hơn TCP tuy nhiên không đảm bảo được tính vẹn toàn của dữ liệu.
+Nó cũng không đảm bảo được máy khách có nhận được dữ liệu hay không và cũng không duy trì kết nối giữa máy chủ và máy khách.
+**Ví dụ:**
+UDP thích hợp cho các ứng dụng đòi hỏi tốc độ cao và có thể chấp nhận mất mát dữ liệu như trò chơi trực tuyến, phát sóng trực tiếp, DNS (Domain Name System), v.v.
 # II. Nodejs:
